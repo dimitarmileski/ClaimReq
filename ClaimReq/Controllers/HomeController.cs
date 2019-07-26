@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 using ClaimReq.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace aspnetcorestarter.Controllers
+namespace ClaimReq.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProfileRepository _profileRepo;
+        private readonly ClaimsRepo _claimsRepo;
 
-        public HomeController(ProfileRepository profileRepo)
+        public HomeController(ClaimsRepo claimsRepo)
         {
-            _profileRepo = profileRepo;
+            _claimsRepo = claimsRepo;
         }
 
         public ActionResult Index()
         {
-            var list = _profileRepo.GetAll();
+            var list = _claimsRepo.GetAll();
             return View(list);
         }
 
@@ -30,19 +30,19 @@ namespace aspnetcorestarter.Controllers
         [HttpPost]
         public ActionResult Save(string key, Profile value)
         {
-            _profileRepo.Save(new KeyValuePair<string, Profile>(key, value));
+            _claimsRepo.Save(new KeyValuePair<string, Profile>(key, value));
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(string id)
         {
-            var profile = _profileRepo.GetProfileByKey(id);
+            var profile = _claimsRepo.GetProfileByKey(id);
             return View("Edit", profile);
         }
 
         public ActionResult Delete(string id)
         {
-            _profileRepo.Delete(id);
+            _claimsRepo.Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -50,7 +50,7 @@ namespace ClaimReq
             // end::config[]
 
             // tag::service[]
-            services.AddTransient<ProfileRepository>();
+            services.AddTransient<ClaimsRepo>();
             // end::service[]
         }
 

@@ -24,13 +24,13 @@ namespace ClaimReq.Controllers
 
         public ActionResult Add()
         {
-            return View("Edit", new KeyValuePair<string, Profile>("", new Profile()));
+            return View("Edit", new KeyValuePair<string, Claim>("", new Claim()));
         }
 
         [HttpPost]
-        public ActionResult Save(string key, Profile value)
+        public ActionResult Save(string key, Claim value)
         {
-            _claimsRepo.Save(new KeyValuePair<string, Profile>(key, value));
+            _claimsRepo.Save(new KeyValuePair<string, Claim>(key, value));
             return RedirectToAction("Index");
         }
 

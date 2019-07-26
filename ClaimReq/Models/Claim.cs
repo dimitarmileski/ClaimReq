@@ -1,7 +1,7 @@
 ﻿namespace ClaimReq.Models
 {
     // tag::class[]
-    public class Profile
+    public class Claim
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

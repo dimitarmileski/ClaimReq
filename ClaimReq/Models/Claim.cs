@@ -5,9 +5,8 @@ namespace ClaimReq.Models
     // tag::class[]
     public class Claim
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Type => "Profile";
+
+        public string Type => "Claim";
 
         //Video Info
         [Display(Name = "Video Title")]

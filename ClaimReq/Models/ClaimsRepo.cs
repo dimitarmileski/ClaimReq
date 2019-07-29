@@ -23,7 +23,7 @@ namespace ClaimReq.Models
                     META().id AS `key`,
                     TOOBJECT(sb) as `value`
                 FROM `starterbucket` as sb
-                WHERE type='Profile';");
+                WHERE type='Claim';");
             request.ScanConsistency(ScanConsistency.RequestPlus);
             var response = _bucket.Query<KeyValuePair<string, Claim>>(request);
             return response.Rows.ToDictionary(x => x.Key, x => x.Value);

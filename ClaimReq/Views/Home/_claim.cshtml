@@ -1,24 +1,32 @@
 ﻿@using ClaimReq.Models
 @model System.Collections.Generic.KeyValuePair<string, Claim>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title">
-            @Model.Value.FirstName @Model.Value.LastName
-            @Html.ActionLink("[Edit]", "Edit", new { id = Model.Key })
-            @Html.ActionLink("[Delete]", "Delete", new { id = Model.Key }, new { @class = "deleteProfile" })
-        </h2>
-    </div>
-    <div class="panel-body">
-        Username: @Model.Key
-        @if (Model.Value.IsResolved)
-        {
-        <form>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-                <label class="custom-control-label" for="customCheck">Check this custom checkbox</label>
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.Value.VideoId)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Value.VideoTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Value.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Value.Date)
+        </td>
+        <td>
+
+            <div class="custom-control custom-checkbox mb-3">
+                @Html.CheckBoxFor(m => m.Value.IsResolved, new { id = "customCheckDisabled", @checked = "checked", @class = "custom-control-input" })
+                <label class="custom-control-label" for="customControlValidation1"></label>
+                <div class="invalid-feedback">Example invalid feedback text</div>
             </div>
-        </form>
-        }
-    </div>
-</div>
+        </td>
+        <td>
+            <i class="fas fa-edit"></i> @Html.ActionLink("Edit", "Edit", new { id = Model.Key })
+            &nbsp;
+            &nbsp;
+            <i class="fas fa-trash-alt"></i> @Html.ActionLink("Delete", "Delete", new { id = Model.Key }, new { @class = "deleteProfile" })
+        </td>
+        <td></td>
+    </tr>

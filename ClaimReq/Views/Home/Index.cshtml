@@ -11,15 +11,43 @@
     <p>There are no claims.</p>
 }
 
-@foreach (var item in Model)
-{
-    @Html.Partial("_claim", item)
-}
+<table id="tableClaims" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Values.ElementAt(0).VideoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Values.ElementAt(0).VideoTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Values.ElementAt(0).Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Values.ElementAt(0).Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Values.ElementAt(0).IsResolved)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_claim", item)
+        }
+    </tbody>
+</table>
+
 
 @section Scripts {
     <script type="text/javascript">
         $(function () {
-            $(".deleteProfile").click(function(e) {
+             var table = $("#tableClaims").DataTable();
+            $(".deleteProfile").click(function (e) {
                 if (confirm("Are you sure you want to delete?")) {
                     return true;
                 }
@@ -28,3 +56,4 @@
         });
     </script>
 }
+

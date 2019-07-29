@@ -92,8 +92,16 @@
 
         @if (!string.IsNullOrEmpty(Model.Key))
         {
-         @Html.LabelFor(m => m.Value.IsResolved, "Resolved")
-         @Html.CheckBoxFor(m => m.Value.IsResolved, new { @checked = "checked" })
+            @*@Html.LabelFor(m => m.Value.IsResolved, "Resolved")
+                @Html.CheckBoxFor(m => m.Value.IsResolved, new { @checked = "checked" })*@
+
+           
+        <div class="custom-control custom-checkbox mb-3">
+            @Html.CheckBoxFor(m => m.Value.IsResolved, new { id="customControlValidation1", @checked = "checked", @class="custom-control-input" })
+            <label class="custom-control-label" for="customControlValidation1">Resolved</label>
+            <div class="invalid-feedback">Example invalid feedback text</div>
+        </div>
+      
         }
 
 

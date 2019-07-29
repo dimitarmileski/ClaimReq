@@ -33,5 +33,72 @@
         @Html.TextBoxFor(m => m.Value.LastName)
     </p>
 
+    <p>
+        @Html.LabelFor(m => m.Value.VideoTitle, "Video Title")
+        @Html.TextBoxFor(m => m.Value.VideoTitle)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoUrl, "Video Url")
+        @Html.TextBoxFor(m => m.Value.VideoUrl)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoId, "Video Id")
+        @Html.TextBoxFor(m => m.Value.VideoId)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoCategory, "Video Category")
+        @Html.TextBoxFor(m => m.Value.VideoCategory)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoDescription, "Video Description")
+        @Html.TextBoxFor(m => m.Value.VideoDescription)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoTags, "Video Tags")
+        @Html.TextBoxFor(m => m.Value.VideoTags)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoDatePublished, "Video Date Published")
+        @Html.TextBoxFor(m => m.Value.VideoDatePublished)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.VideoChannelTitle, "Video ChannelTitle")
+        @Html.TextBoxFor(m => m.Value.VideoChannelTitle)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.altUrlUpload, "Alt Url")
+        @Html.TextBoxFor(m => m.Value.altUrlUpload)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.Description, "Description")
+        @Html.TextBoxFor(m => m.Value.Description)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Value.Date, "Date")
+        @Html.TextBoxFor(m => m.Value.Date)
+    </p>
+
+    <p>
+
+        @if (!string.IsNullOrEmpty(Model.Key))
+        {
+         @Html.LabelFor(m => m.Value.IsResolved, "Resolved")
+         @Html.CheckBoxFor(m => m.Value.IsResolved, new { @checked = "checked" })
+        }
+
+
+    </p>
+
+
     <input type="submit" value="Submit" />
 }

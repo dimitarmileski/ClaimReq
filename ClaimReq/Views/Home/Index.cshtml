@@ -8,12 +8,12 @@
 
 @if (!Model.Any())
 {
-    <p>There are no people yet.</p>
+    <p>There are no claims.</p>
 }
 
 @foreach (var item in Model)
 {
-    @Html.Partial("_profile", item)
+    @Html.Partial("_claim", item)
 }
 
 @section Scripts {

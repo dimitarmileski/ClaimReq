@@ -36,8 +36,8 @@ namespace ClaimReq.Controllers
 
         public ActionResult Edit(string id)
         {
-            var profile = _claimsRepo.GetProfileByKey(id);
-            return View("Edit", profile);
+            var claim = _claimsRepo.GetClaimByKey(id);
+            return View("Edit", claim);
         }
 
         public ActionResult Delete(string id)

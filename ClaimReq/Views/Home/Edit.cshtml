@@ -10,141 +10,128 @@
 
     if (!string.IsNullOrEmpty(Model.Key))
     {
-        <input type="hidden" name="Key" value="@Model.Key" />
-        <p>
-            Username: <strong>@Model.Key</strong>
-        </p>
+        <div class="form-group w-50 mx-auto">
+            <input type="hidden" name="Key" value="@Model.Key" />
+                Username: <strong>@Model.Key</strong> 
+        </div>
     }
     else
     {
-        <p>
+        <div class="form-group w-50 mx-auto">
             @Html.LabelFor(m => m.Key, "Username")
-            @Html.TextBoxFor(m => m.Key)
-        </p>
+            @Html.TextBoxFor(m => m.Key, new { @class = "form-control" })
+        </div>
     }
 
 
 
-<form action="post">
-
-    <legend>Video</legend>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoTitle, "Video Title")
-        @Html.TextBoxFor(m => m.Value.VideoTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoUrl, "Video Url")
-        @Html.TextBoxFor(m => m.Value.VideoUrl, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoId, "Video Id")
-        @Html.TextBoxFor(m => m.Value.VideoId, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Id" })
-    </div>
-
-    @*@Html.LabelFor(m => m.Value.VideoCategory, "Video Category")
-
-        <br />
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-video"></i></label>
+    <form action="post">
+        <div class="w-50 mx-auto">
+            <legend>Video</legend>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoTitle, "Video Title")
+                @Html.TextBoxFor(m => m.Value.VideoTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
             </div>
-            @Html.DropDownListFor(m => m.Value.VideoCategory,
-                new List<SelectListItem> {
-                     new SelectListItem { Value = "0" , Text = "Choose category..." },
-                     new SelectListItem { Value = "1" , Text = "Film & Animation" },
-                     new SelectListItem { Value = "2" , Text = "Autos & Vehicles" },
-                     new SelectListItem { Value = "10" , Text = "Music" },
-                     new SelectListItem { Value = "15" , Text = "Pets & Animals" },
-                     new SelectListItem { Value = "17" , Text = "Sports" },
-                     new SelectListItem { Value = "19" , Text = "Travel & Events" },
-                     new SelectListItem { Value = "20" , Text = "Gaming" },
-                     new SelectListItem { Value = "22" , Text = "People & Blogs" },
-                     new SelectListItem { Value = "23" , Text = "Comedy" },
-                     new SelectListItem { Value = "24" , Text = "Entertainment" },
-                     new SelectListItem { Value = "25" , Text = "News & Politics" },
-                     new SelectListItem { Value = "26" , Text = "Howto & Style" },
-                     new SelectListItem { Value = "27" , Text = "Education" },
-                     new SelectListItem { Value = "28" , Text = "Science & Technology" },
-                     new SelectListItem { Value = "29" , Text = "Nonprofits & Activism" }
-                  },
-                new { id = "inputGroupSelect01", @class = "custom-select" })
-        </div>*@
-    <br />
-    <br />
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoCategory, "Video Category")
-        @Html.TextBoxFor(m => m.Value.VideoCategory, new { @class = "form-control" })
-    </div>
-    <br />
-    <br />
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoDescription, "Video Description")
-        @Html.TextAreaFor(m => m.Value.VideoDescription, new { id = "exampleTextarea", @class = "form-control" })
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoTags, "Video Tags")
-        @Html.TextAreaFor(m => m.Value.VideoTags, new { @class = "form-control" })
-    </div>
-    @*<div class="input-group mb-3" style="">
-            <div class="input-group">
-                @Html.LabelFor(m=>m.Value.VideoTags, new { @class="input-group-text w-100", id="inputGroup-sizing-default" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoUrl, "Video Url")
+                @Html.TextBoxFor(m => m.Value.VideoUrl, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
             </div>
-            @Html.TextBoxFor(m=>m.Value.VideoTags, new { id="videoTags", data_role="tagsinput",  type="text", @class="form-control", name="videoTags" })
-        </div>*@
-
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoDatePublished)
-        @Html.TextBoxFor(m => m.Value.VideoDatePublished, new { id = "datepicker1", @class = "form-control datepicker" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.VideoChannelTitle, "Video Channel Title")
-        @Html.TextBoxFor(m => m.Value.VideoChannelTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Channel Title" })
-    </div>
-
-    <legend>Claim</legend>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.Description, "Description")
-        @Html.TextAreaFor(m => m.Value.Description, new { id = "exampleTextarea", @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.Date)
-        @Html.TextBoxFor(m => m.Value.Date, new { id = "datepicker2", @class = "form-control datepicker" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Value.altUrlUpload, "Alt Url Upload");
-        @Html.TextBoxFor(m => m.Value.altUrlUpload, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Alt Url Upload" })
-    </div>
-
-    <hr />
-    <p>
-
-        @if (!string.IsNullOrEmpty(Model.Key))
-        {
-            @*@Html.LabelFor(m => m.Value.IsResolved, "Resolved")
-                @Html.CheckBoxFor(m => m.Value.IsResolved, new { @checked = "checked" })*@
-
-
-            <div class="custom-control custom-checkbox mb-3">
-                @Html.CheckBoxFor(m => m.Value.IsResolved, new { id = "customControlValidation1", @checked = "checked", @class = "custom-control-input" })
-                <label class="custom-control-label" for="customControlValidation1">Resolved</label>
-                <div class="invalid-feedback">Example invalid feedback text</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoId, "Video Id")
+                @Html.TextBoxFor(m => m.Value.VideoId, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Id" })
             </div>
 
-        }
+            @Html.LabelFor(m => m.Value.VideoCategory, "Video Category")
+
+            <br />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-video"></i></label>
+                </div>
+                @Html.DropDownListFor(m => m.Value.VideoCategory,
+                    new List<SelectListItem> {
+                         new SelectListItem { Value = "None" , Text = "Choose category..." },
+                         new SelectListItem { Value = "Film & Animation" , Text = "Film & Animation" },
+                         new SelectListItem { Value = "Autos & Vehicles" , Text = "Autos & Vehicles" },
+                         new SelectListItem { Value = "Music" , Text = "Music" },
+                         new SelectListItem { Value = "Pets & Animals" , Text = "Pets & Animals" },
+                         new SelectListItem { Value = "Sports" , Text = "Sports" },
+                         new SelectListItem { Value = "Travel & Events" , Text = "Travel & Events" },
+                         new SelectListItem { Value = "Gaming" , Text = "Gaming" },
+                         new SelectListItem { Value = "People & Blogs" , Text = "People & Blogs" },
+                         new SelectListItem { Value = "Comedy" , Text = "Comedy" },
+                         new SelectListItem { Value = "Entertainment" , Text = "Entertainment" },
+                         new SelectListItem { Value = "News & Politics" , Text = "News & Politics" },
+                         new SelectListItem { Value = "Howto & Style" , Text = "Howto & Style" },
+                         new SelectListItem { Value = "Education" , Text = "Education" },
+                         new SelectListItem { Value = "Science & Technology" , Text = "Science & Technology" },
+                         new SelectListItem { Value = "Nonprofits & Activism" , Text = "Nonprofits & Activism" }
+                      },
+                    new { id = "inputGroupSelect01", @class = "custom-select" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoDescription, "Video Description")
+                @Html.TextAreaFor(m => m.Value.VideoDescription, new { id = "exampleTextarea", @class = "form-control" })
+            </div>
+
+            <div class="input-group mb-3" style="">
+                <div class="input-group">
+                    @Html.LabelFor(m => m.Value.VideoTags, new { @class = "input-group-text w-100", id = "inputGroup-sizing-default" })
+                </div>
+                @Html.TextBoxFor(m => m.Value.VideoTags, new { id = "videoTags", data_role = "tagsinput", type = "text", @class = "form-control", name = "videoTags" })
+            </div>
 
 
-    </p>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoDatePublished)
+                @Html.TextBoxFor(m => m.Value.VideoDatePublished, new { id = "datepicker1", @class = "form-control datepicker" })
+            </div>
 
-    <input type="submit" value="Add Claim" class="btn btn-secondary" />
-</form>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.VideoChannelTitle, "Video Channel Title")
+                @Html.TextBoxFor(m => m.Value.VideoChannelTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Channel Title" })
+            </div>
+
+            <legend>Claim</legend>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.Description, "Description")
+                @Html.TextAreaFor(m => m.Value.Description, new { id = "exampleTextarea", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.Date)
+                @Html.TextBoxFor(m => m.Value.Date, new { id = "datepicker2", @class = "form-control datepicker" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Value.altUrlUpload, "Alt Url Upload");
+                @Html.TextBoxFor(m => m.Value.altUrlUpload, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Alt Url Upload" })
+            </div>
+
+            <hr />
+            <p>
+
+                @if (!string.IsNullOrEmpty(Model.Key))
+                {
+                    @*@Html.LabelFor(m => m.Value.IsResolved, "Resolved")
+                        @Html.CheckBoxFor(m => m.Value.IsResolved, new { @checked = "checked" })*@
+
+
+                    <div class="custom-control custom-checkbox mb-3">
+                        @Html.CheckBoxFor(m => m.Value.IsResolved, new { id = "customControlValidation1", @checked = "checked", @class = "custom-control-input" })
+                        <label class="custom-control-label" for="customControlValidation1">Resolved</label>
+                        <div class="invalid-feedback">Example invalid feedback text</div>
+                    </div>
+
+                }
+
+
+            </p>
+
+            <input type="submit" value="Add Claim" class="btn btn-secondary" />
+        </div>
+    </form>
 
 }
 

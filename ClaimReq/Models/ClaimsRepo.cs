@@ -29,7 +29,7 @@ namespace ClaimReq.Models
             return response.Rows.ToDictionary(x => x.Key, x => x.Value);
         }
 
-        public KeyValuePair<string, Claim> GetProfileByKey(string key)
+        public KeyValuePair<string, Claim> GetClaimByKey(string key)
         {
             var claim = _bucket.Get<Claim>(key).Value;
             return new KeyValuePair<string, Claim>(key, claim);

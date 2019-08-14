@@ -29,26 +29,26 @@
         <div class="w-50 mx-auto">
             <legend>Video</legend>
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoTitle, "Video Title")
-                @Html.TextBoxFor(m => m.Value.VideoTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
+                @Html.LabelFor(m => m.Value.VideoInfo.Title, "Video Title")
+                @Html.TextBoxFor(m => m.Value.VideoInfo.Title, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoUrl, "Video Url")
-                @Html.TextBoxFor(m => m.Value.VideoUrl, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
+                @Html.LabelFor(m => m.Value.VideoInfo.Url, "Video Url")
+                @Html.TextBoxFor(m => m.Value.VideoInfo.Url, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Title" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoId, "Video Id")
-                @Html.TextBoxFor(m => m.Value.VideoId, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Id" })
+                @Html.LabelFor(m => m.Value.VideoInfo.Id, "Video Id")
+                @Html.TextBoxFor(m => m.Value.VideoInfo.Id, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Id" })
             </div>
 
-            @Html.LabelFor(m => m.Value.VideoCategory, "Video Category")
+            @Html.LabelFor(m => m.Value.VideoInfo.Category, "Video Category")
 
             <br />
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-video"></i></label>
                 </div>
-                @Html.DropDownListFor(m => m.Value.VideoCategory,
+                @Html.DropDownListFor(m => m.Value.VideoInfo.Category,
                     new List<SelectListItem> {
                          new SelectListItem { Value = "None" , Text = "Choose category..." },
                          new SelectListItem { Value = "Film & Animation" , Text = "Film & Animation" },
@@ -71,26 +71,26 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoDescription, "Video Description")
-                @Html.TextAreaFor(m => m.Value.VideoDescription, new { id = "exampleTextarea", @class = "form-control" })
+                @Html.LabelFor(m => m.Value.VideoInfo.Description, "Video Description")
+                @Html.TextAreaFor(m => m.Value.VideoInfo.Description, new { id = "exampleTextarea", @class = "form-control" })
             </div>
 
             <div class="input-group mb-3" style="">
                 <div class="input-group">
-                    @Html.LabelFor(m => m.Value.VideoTags, new { @class = "input-group-text w-100", id = "inputGroup-sizing-default" })
+                    @Html.LabelFor(m => m.Value.VideoInfo.Tags, new { @class = "input-group-text w-100", id = "inputGroup-sizing-default" })
                 </div>
-                @Html.TextBoxFor(m => m.Value.VideoTags, new { id = "videoTags", data_role = "tagsinput", type = "text", @class = "form-control", name = "videoTags" })
+                @Html.TextBoxFor(m => m.Value.VideoInfo.Tags, new { id = "videoTags", data_role = "tagsinput", type = "text", @class = "form-control", name = "videoTags" })
             </div>
 
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoDatePublished)
-                @Html.TextBoxFor(m => m.Value.VideoDatePublished, new { id = "datepicker1", @class = "form-control datepicker" })
+                @Html.LabelFor(m => m.Value.VideoInfo.DatePublished)
+                @Html.TextBoxFor(m => m.Value.VideoInfo.DatePublished, new { id = "datepicker1", @class = "form-control datepicker" })
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Value.VideoChannelTitle, "Video Channel Title")
-                @Html.TextBoxFor(m => m.Value.VideoChannelTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Channel Title" })
+                @Html.LabelFor(m => m.Value.VideoInfo.ChannelTitle, "Video Channel Title")
+                @Html.TextBoxFor(m => m.Value.VideoInfo.ChannelTitle, new { id = "formGroupExampleInput", @class = "form-control", placeholder = "Video Channel Title" })
             </div>
 
             <legend>Claim</legend>

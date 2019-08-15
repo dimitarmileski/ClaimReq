@@ -7,6 +7,7 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/font-awesome/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/lib/DataTables/css/dataTables.bootstrap4.css" />
         <link href="~/css/bootstrap-tagsinput.css" rel="stylesheet">
@@ -24,40 +25,92 @@
     </environment>
 </head>
 <body>
-   
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <a class="navbar-brand" asp-controller="Home" asp-action="Index">🥋</a>
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">ClaimReq <i class="fab fa-youtube text-danger"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
 
-                <li class="nav-item active">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Add"><i class="fas fa-plus"></i> Add Claim</a>
-                </li>
+                <ul class="navbar-nav mr-auto">
 
-            </ul>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Add"><i class="fas fa-plus"></i> Add Claim</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="DownloadVideo" asp-action="Index"><i class="fas fa-download"></i> Download Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Video" asp-action="Convert"><i class="fas fa-cogs"></i> Converter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " asp-controller="Video" asp-action="Index"><i class="fas fa-upload"></i> Upload Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" asp-controller="Playlist" asp-action="Create"><i class="fas fa-plus-circle"></i> Create Playlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" asp-controller="Playlist" asp-action="Create"><i class="fas fa-cut"></i> Cut Video</a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search YouTube video" aria-label="Search" id="searchKeyword" name="searchKeyword">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" asp-controller="Video" asp-action="Search"><i class="fas fa-search"></i></button>
+                </form>
+            }
             <partial name="_LoginPartial" />
         </div>
+
     </nav>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1 style="text-align:center;" class="display-4">ClaimReq </h1>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4  d-flex justify-content-center">
+            <span style="text-align: center;" class="badge badge-light">YouTube Claim Requests Management</span>
+            <br />
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - ClaimReq</p>
-        </footer>
+    <div class="container body-content mb-5">
+        <div class="row">
+
+            <div class="col-md-10 mx-auto" style="text-align:center; margin-top: 50px;">
+                @RenderBody()
+            </div>
+
+        </div>
+
+
     </div>
+
+    <footer class="fixed-bottom bg-light text-center p-1">
+        <span>ClaimReq &copy; 2019</span>
+    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/popper.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script defer src="~/lib/font-awesome/js/all.js"></script>
@@ -65,6 +118,7 @@
         <script defer src="~/lib/DataTables/js/jquery.dataTables.js"></script>
         <script defer src="~/lib/DataTables/js/dataTables.bootstrap4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="~/js/clipboard.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Convert";
+}
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h4>Converter</h4>
+    </div>
+
+    <form method="post" asp-controller="Video" asp-action="Convert">
+        <div class="card-body">
+
+            <p class="card-text">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="fileName" name="fileName">
+                        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="inputGroupFileAddon02">Video</span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="formatSelected" name="formatSelected">
+                        <option selected>Choose...</option>
+                        <option value="asf">asf</option>
+                        <option value="avi">avi</option>
+                        <option value="f4v">f4v</option>
+                        <option value="flv">flv</option>
+                        <option value="m2t">m2t</option>
+                        <option value="m2ts">m2ts</option>
+                        <option value="mkv">mkv</option>
+                        <option value="mov">mov</option>
+                        <option value="mp4">mp4</option>
+                        <option value="mpg">mpg</option>
+                        <option value="mts">mts</option>
+                        <option value="nut">nut</option>
+                        <option value="ogv">ogv</option>
+                        <option value="ts">ts</option>
+                        <option value="vob">vob</option>
+                        <option value="webm">webm</option>
+                        <option value="wmv">wmv</option>
+                        <option value="wtv">wtv</option>
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputGroupSelect02">Format</label>
+                    </div>
+                </div>
+
+            </p>
+
+            <div id="divLoader" style="display:none; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+
+                <div class="spinner-grow text-danger" role="status">
+                </div>
+
+            </div>
+
+            <button href="#" id="btnSubmit" type="submit" value="Submit" class="btn btn-danger" style="margin-top: 40px;">Convert</button>
+
+
+        </div>
+    </form>
+    <div class="card-footer text-muted">
+        <i class="fas fa-cogs"></i>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#fileName').on('change', function () {
+                //get the file name
+                var fileName = document.getElementById("fileName").files[0].name;
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
+
+
+            $("#btnSubmit").click(function () {
+                $("#divLoader").show();
+                $.ajax
+                    ({
+                        //url: '/Video/Convert',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: {},
+                        //async: true,
+                        //processData: false,
+                        // cache: false,
+                        success: function (data) {
+                            $("#divLoader").hide();
+                            alert(data);
+                        },
+                        //error: function (xhr) {
+                        //    $("#divLoader").hide();
+                        //    alert('error');
+                        //}
+                    })
+            });
+
+        });
+    </script>
+
+}

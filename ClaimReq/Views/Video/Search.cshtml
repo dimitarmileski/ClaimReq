@@ -1,0 +1,131 @@
+﻿@model ClaimReq.Models.ViewModels.SearchViewModel
+@using Humanizer;
+
+@{
+
+    ViewData["Title"] = "Search";
+}
+
+<div class="card text-left">
+    <div class="card-body">
+        <h6 class="">Search: <span class="text-black-50">@Model.Keyword</span></h6>
+    </div>
+</div>
+
+<br />
+@*<ul class="list-unstyled">
+        @for (int i = 0; i < 50; i++)
+        {
+            <li class="media mb-5">
+                <img src="https://codyhouse.co/demo/squeezebox-portfolio-template/img/img.png" class="mr-3 w-50" alt="video image">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+                <button type="button" class="btn btn-light "><i class="fas fa-download"></i></button>
+            </li>
+
+            <hr />
+        }
+    </ul>*@
+
+<form method="post">
+    <div class="row no-gutters bg-light position-relative" style="word-wrap: break-word;">
+        @foreach (var videoInfo in Model.VideoSearchInfos)
+        {
+            if (!videoInfo.isChannel && !videoInfo.isPlaylist)
+            {
+
+
+
+                <div class="col-md-6 mb-md-0 p-md-4">
+                    <a href="https://www.youtube.com/watch?v=@videoInfo.VideoId" target="_blank" title="See video on YouTube">
+                        <img src="@videoInfo.ThumbnailUrl" class="w-100" alt="video image">
+                    </a>
+                </div>
+                <div class="col-md-6 position-static p-4 pl-md-0 text-left">
+
+                    <h5 class="mt-0 card-title">
+                        <a href="https://www.youtube.com/watch?v=@videoInfo.VideoId" target="_blank" class="text-body text-decoration-none" title="See video on YouTube">
+                            @videoInfo.Title
+                        </a>
+                    </h5>
+                    <a href="https://www.youtube.com/channel/@videoInfo.ChannelId" target="_blank" class="badge badge-light">@videoInfo.ChannelTitle</a> • <span class="badge badge-light text-black-50">@Convert.ToDateTime(videoInfo.PublishedAt).Humanize()</span>
+                    <p>@videoInfo.Description</p>
+                    <button data-clipboard-text="@videoInfo.VideoId" type="button" class="btn btn-light btnClipboard" data-toggle="tooltip" data-placement="top" title="Copy VideoId"><i class="fas fa-clipboard"></i></button>
+
+
+                    @*<input type="hidden" id="videoId" name="videoId" value="@videoInfo.VideoId"/>*@
+                    <button type="submit" asp-controller="Video" asp-action="DownloadVideo" asp-route-videoId="@videoInfo.VideoId" class="btn btn-light" title="Download video" data-toggle="tooltip" data-placement="top" title="Download Video"><i class="fas fa-download"></i></button>
+
+                </div>
+
+
+            }
+            else if (videoInfo.isPlaylist)
+            {
+                <div class="col-md-6 mb-md-0 p-md-4">
+                    <a href="https://www.youtube.com/playlist?list=@videoInfo.PlaylistId" target="_blank" title="See video on YouTube">
+                        <img src="@videoInfo.ThumbnailUrl" class="w-100" alt="video image">
+                    </a>
+                </div>
+                <div class="col-md-6 position-static p-4 pl-md-0 text-left">
+
+                    <h5 class="mt-0 card-title">
+                        <a href="https://www.youtube.com/playlist?list=@videoInfo.PlaylistId" target="_blank" class="text-body text-decoration-none" title="See video on YouTube">
+                            @videoInfo.Title
+                        </a>
+                    </h5>
+                    <span class="badge badge-light">Playlist</span>
+                    <p>@videoInfo.Description</p>
+                    <button data-clipboard-text="@videoInfo.PlaylistId" type="button" class="btn btn-light btnClipboard" data-toggle="tooltip" data-placement="top" title="Copy PlaylistId"><i class="fas fa-clipboard"></i></button>
+                    <a href="https://www.youtube.com/playlist?list=@videoInfo.PlaylistId" target="_blank" class="text-secondary text-decoration-none">VIEW FULL PLAYLIST</a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 mb-md-0 p-md-4">
+                    <a href="https://www.youtube.com/channel/@videoInfo.ChannelId" target="_blank" title="See video on YouTube">
+                        <img src="@videoInfo.ThumbnailUrl" class="w-50 rounded-circle" alt="video image">
+                    </a>
+                </div>
+                <div class="col-md-6 position-static p-4 pl-md-0 text-left">
+
+                    <h5 class="mt-0 card-title">
+                        <a href="https://www.youtube.com/channel/@videoInfo.ChannelId" target="_blank" class="text-body text-decoration-none" title="See video on YouTube">
+                            @videoInfo.Title
+                        </a>
+                    </h5>
+                    <span class="badge badge-light">Channel</span>
+                    <p>@videoInfo.Description</p>
+                    <button data-clipboard-text="@videoInfo.ChannelId" type="button" class="btn btn-light btnClipboard" data-toggle="tooltip" data-placement="top" title="Copy ChannelId"><i class="fas fa-clipboard"></i></button>
+                </div>
+            }
+
+        }
+
+    </div>
+</form>
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+                var clipboard = new ClipboardJS('.btnClipboard');
+
+                clipboard.on('success', function (e) {
+                    console.log(e);
+                });
+
+                clipboard.on('error', function (e) {
+                    console.log(e);
+                });
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                })
+    </script>
+
+
+
+}

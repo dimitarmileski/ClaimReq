@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-controller="DownloadVideo" asp-action="DownloadVideo" method="post">
+
+    @Html.TextBox("videoUrl", "", new { placeholder = "Enter URL or YouTube video ID", @class = "form-control" })
+    <br />
+
+    <div class="input-group">
+        <select class="custom-select" id="formatSelected" name="formatSelected" aria-label="Example select with button addon">
+            <option>Choose format...</option>
+            <option>🎥 VIDEO</option>
+            <option value="asf">asf</option>
+            <option value="avi">avi</option>
+            <option value="f4v">f4v</option>
+            <option value="flv">flv</option>
+            <option value="m2t">m2t</option>
+            <option value="m2ts">m2ts</option>
+            <option value="mkv">mkv</option>
+            <option value="mov">mov</option>
+            <option selected value="mp4">mp4</option>
+            <option value="mpg">mpg</option>
+            <option value="mts">mts</option>
+            <option value="nut">nut</option>
+            <option value="ogv">ogv</option>
+            <option value="ts">ts</option>
+            <option value="vob">vob</option>
+            <option value="webm">webm</option>
+            <option value="wmv">wmv</option>
+            <option value="wtv">wtv</option>
+            <option>🎧 AUDIO</option>
+            <option value="aac">aac</option>
+            <option value="aif">aif</option>
+            <option value="aifc">aifc</option>
+            <option value="aiff">aiff</option>
+            <option value="au">au</option>
+            <option value="flac">flac</option>
+            <option value="m4a">m4a</option>
+            <option value="m4v">m4v</option>
+            <option value="mka">mka</option>
+            <option value="mp2">mp2</option>
+            <option value="mp3">mp3</option>
+            <option value="mpa">mpa</option>
+            <option value="ogg">ogg</option>
+            <option value="wav">wav</option>
+            <option>🖼️ THUMBNAIL</option>
+            <option value="bmp">bmp</option>
+            <option value="gif">gif</option>
+            <option value="jpeg">jpeg</option>
+            <option value="jpg">jpg</option>
+            <option value="png">png</option>
+            <option value="tiff">tiff</option>
+        </select>
+        <div class="input-group-append" style="margin-bottom: 20px;">
+            <button id="btnSubmit" type="submit" class="btn btn-danger btn-block">Download <i class="fas fa-download"></i></button>
+        </div>
+    </div>
+
+
+    <div id="divLoader" style="display:none;">
+        <div id="spiner" class="spinner-border text-danger" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+
+        </div>
+    </div>
+
+    @if (@ViewBag.successDownload)
+    {
+        <div id="alert">
+            @Html.Partial("_StatusMessages")
+        </div>
+    }
+</form>
+
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div class="embed-responsive embed-responsive-16by9" style="box-sizing: border-box; margin-top: 50px;">
+    <div id="player"></div>
+</div>
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var ytVideoId = "";
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+
+            if (ytVideoId != "") {
+                player = new YT.Player('player', {
+                    height: '390',
+                    width: '640',
+                    videoId: ytVideoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            //event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        // var done = false;
+        function onPlayerStateChange(event) {
+            //if (event.data == YT.PlayerState.PLAYING && !done) {
+            //    setTimeout(stopVideo, 6000);
+            //    done = true;
+            //}
+        }
+        function stopVideo() {
+            //player.stopVideo();
+        }
+
+
+
+        //JQuery
+        $(document).ready(function () {
+
+            $("#videoUrl").change(function () {
+                // 2. This code loads the IFrame Player API code asynchronously.
+                var tag = document.createElement('script');
+
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+
+                //Full url or only Youtube Id
+
+                var ytUrl = $("#videoUrl").val();
+                var urlParts = ytUrl.split('=');
+
+                if (urlParts.length != 2) {
+                    ytVideoId = urlParts[0];
+                } else {
+                    ytVideoId = urlParts[1];
+                }
+
+            });
+
+
+            //Spinner
+            $("#btnSubmit").click(function () {
+                $("#divLoader").show();
+                $.ajax
+                    ({
+                        //url: '/Video/Convert',
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: {},
+                        //async: true,
+                        //processData: false,
+                        // cache: false,
+                        success: function (data) {
+                            $("#divLoader").hide();
+                            alert(data);
+                        },
+                        //error: function (xhr) {
+                        //    $("#divLoader").hide();
+                        //    alert('error');
+                        //}
+                    })
+            });
+
+
+            //Alert disapear after 4s
+            setTimeout(function () { $("#alert").hide(); }, 4000);
+        });
+    </script>
+}
+
+

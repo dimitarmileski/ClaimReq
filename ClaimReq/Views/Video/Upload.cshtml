@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Upload";
+}
+
+@{
+    string videoId = ViewBag.VideoId;
+    string url = "https://www.youtube.com/watch?v=" + videoId;
+}
+
+<div class="alert alert-success" role="alert">
+    @*Video successfully uploaded. See <a href="https://www.youtube.com/watch?v= @ViewBag.VideoId" class="alert-link">video</a> on YouTube.*@
+    Video successfully uploaded. See <a href="@url" target="_blank" class="alert-link">video</a> on YouTube.
+</div>
+

@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Upload Video</h4>
+<br />
+<br />
+
+<form asp-controller="Video" asp-action="Upload" method="post">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Video Title</span>
+        </div>
+        <input id="videoTitle" name="videoTitle" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+    </div>
+
+    <div class="input-group mb-3" style="">
+        <div class="input-group">
+            <span class="input-group-text w-100" id="inputGroup-sizing-default">Tags</span>
+        </div>
+        <input id="videoTags" name="videoTags" data-role="tagsinput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+    </div>
+
+
+    @* value - categoryId  *@
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+        </div>
+        <select class="custom-select" id="videoCategorySelected" name="videoCategorySelected" required>
+            <option selected>Choose category...</option>
+            <option value="1">Film & Animation</option>
+            <option value="2">Autos & Vehicles</option>
+            <option value="10">Music</option>
+            <option value="15">Pets & Animals</option>
+            <option value="17">Sports</option>
+            <option value="19">Travel & Events</option>
+            <option value="20">Gaming</option>
+            <option value="22">People & Blogs</option>
+            <option value="23">Comedy</option>
+            <option value="24">Entertainment</option>
+            <option value="25">News & Politics</option>
+            <option value="26">Howto & Style</option>
+            <option value="27">Education</option>
+            <option value="28">Science & Technology</option>
+            <option value="29">Nonprofits & Activism</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+        </div>
+        <textarea id="videoDesc" name="videoDesc" class="form-control" aria-label="With textarea" required></textarea>
+    </div>
+
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="videoPath" name="videoPath" aria-describedby="inputGroupFileAddon04" required>
+            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+        </div>
+        <div class="input-group-append">
+            <button id="btnSubmit" class="btn btn-danger" type="submit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $('#videoPath').on('change', function () {
+                //get the file name
+                var fileName = document.getElementById("videoPath").files[0].name;
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+                $("form").attr("asp-route-id", fileName);
+            });
+
+
+        });
+
+    </script>
+
+}

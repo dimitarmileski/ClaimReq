@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @model System.Collections.Generic.KeyValuePair<string, ClaimReq.Models.Claim>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 
 @{
     ViewBag.Title = "Add : Claim";
@@ -12,14 +16,14 @@
     {
         <div class="form-group w-50 mx-auto">
             <input type="hidden" name="Key" value="@Model.Key" />
-                Username: <strong>@Model.Key</strong> 
+            Username: <strong>@Model.Key</strong>
         </div>
     }
     else
     {
         <div class="form-group w-50 mx-auto">
             @Html.LabelFor(m => m.Key, "Username")
-            @Html.TextBoxFor(m => m.Key, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Key, new { @class = "form-control"})
         </div>
     }
 
